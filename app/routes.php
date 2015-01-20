@@ -206,3 +206,21 @@ Route::get('username/{username}', function(User $user)
 {
 	return $user;
 });
+
+/*
+|--------------------------------------------------------------------------
+| Requests & Input
+|--------------------------------------------------------------------------
+*/
+
+// Retrieving An Input Value
+Route::get('basicInput1', function()
+{
+	return Input::get('name');
+});
+
+// Retrieving A Default Value If The Input Value Is Absent
+Route::get('basicInput1', function()
+{
+	return Input::get('name', 'Sally');
+});
