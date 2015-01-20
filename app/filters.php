@@ -85,3 +85,53 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+/*
+|--------------------------------------------------------------------------
+| Route Filters
+|--------------------------------------------------------------------------
+*/
+
+// Accessing A Route Parameter Value
+Route::filter('AccessRouteParams', function()
+{
+	if (Route::input('id') == 1)
+	{
+		return "1!";
+	}
+});
+
+// Defining A Route Filter
+Route::filter('old', function()
+{
+	if (Input::get('age') < 200)
+	{
+		return "< 200";
+	}
+});
+
+// Specifying Filter Parameters
+Route::filter('age', function($route, $request, $value)
+{
+	if (Input::get('age') == $value)
+	{
+		return "200!";
+	}
+});
+
+// After Filter
+Route::filter('logAfter', function($route, $request, $response)
+{
+	var_dump($response);
+});
+
+// Pattern Based Filters
+Route::filter('patternBasedFilters', function()
+{
+	return "Pattern Based Filters";
+});
+
+Route::when('patternBasedFilters/*', 'patternBasedFilters');
+
+// Filter Classes
+// skip
