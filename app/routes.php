@@ -25,6 +25,29 @@ Route::get('users', function()
 
 /*
 |--------------------------------------------------------------------------
+| Intervention Image
+|--------------------------------------------------------------------------
+*/
+
+Route::get('image/small/{src}', function($src)
+{
+	$img = Image::cache(function($image) use ($src) {
+		$image->make('images/'.$src)->resize(100, 100);
+	}, 10, true);
+	//$img = Image::make('images/'.$src)->resize(100, 100);
+
+	// create response and add encoded image data
+	$response = Response::make($img->encode('png'));
+
+	// set content-type
+	$response->header('Content-Type', 'image/png');
+
+	// output
+	return $response;
+});
+
+/*
+|--------------------------------------------------------------------------
 | Routing
 |--------------------------------------------------------------------------
 */
