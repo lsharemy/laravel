@@ -52,6 +52,8 @@
 			<input type="file" name="fileToUpload" id="fileToUpload">
 			<input type="submit" value="Upload Image" name="submit">
 		</form>
+		<?php echo $child; ?>
+		<?php echo $count; ?>
 	</div>
 </body>
 </html>

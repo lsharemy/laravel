@@ -326,3 +326,46 @@ Route::get('requestInformation', function()
 {
 	return Request::path()."|".Request::url()."|".Request::segment(1)."|".Request::format();
 });
+
+/*
+|--------------------------------------------------------------------------
+| Views & Responses
+|--------------------------------------------------------------------------
+*/
+
+// Creating Custom Responses
+Route::get('customResponses', function()
+{
+	$response = Response::make("abc", 200);
+
+	$response->header('Content-Type', "text/html");
+
+	return $response;
+});
+
+// Redirects
+Route::get('Redirects', function()
+{
+	return Redirect::to('/');
+});
+
+// Views
+Route::get('subView', function()
+{
+	return View::make('hello')->nest('child', 'child.view');
+});
+
+// View Composers
+View::composer('hello', function($view)
+{
+	$view->with('count', User::count());
+});
+
+// Special Responses
+Route::get('JSONResponses', function()
+{
+	return Response::json(array('name' => 'Steve', 'state' => 'CA'));
+});
+
+// Response Macros
+// skip
