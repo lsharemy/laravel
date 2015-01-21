@@ -247,3 +247,82 @@ Route::get('basicInput1', function()
 {
 	return Input::get('name', 'Sally');
 });
+
+// Determining If An Input Value Is Present
+Route::get('basicInput2', function()
+{
+	if (Input::has('name'))
+	{
+		return "has name";
+	}
+	else
+	{
+		return "no name";
+	}
+});
+
+// Getting All Input For The Request
+Route::get('basicInput3', function()
+{
+	return Input::all();
+});
+
+// Getting Only Some Of The Request Input
+Route::get('basicInput4', function()
+{
+	return Input::only('username', 'password');
+});
+Route::get('basicInput5', function()
+{
+	return Input::except('credit_card');
+});
+
+// Retrieving A Cookie Value
+Route::get('cookies1', function()
+{
+	return Cookie::get('name');
+});
+
+// Attaching A New Cookie To A Response
+Route::get('cookies2', function()
+{
+	$response = Response::make('Hello World');
+
+	$response->withCookie(Cookie::make('name', 'value', 1));
+
+	return $response;
+});
+
+// Queueing A Cookie For The Next Response
+Route::get('cookies3', function()
+{
+	Cookie::queue("abc", "123", 1);
+	return "abc";
+});
+
+// Old Input
+Route::get('oldInput', function()
+{
+	return Redirect::to('oldInput2')->withInput();
+});
+
+Route::get('oldInput2', function()
+{
+	return Input::old('firstname');
+});
+
+// Files
+Route::post('fileUpload', function()
+{
+	if (Input::hasFile('fileToUpload'))
+	{
+		$file = Input::file('fileToUpload');
+		return $file->getMimeType()."|".$file->getRealPath()."|".$file->getClientOriginalName();
+	}
+});
+
+// Request Information
+Route::get('requestInformation', function()
+{
+	return Request::path()."|".Request::url()."|".Request::segment(1)."|".Request::format();
+});
