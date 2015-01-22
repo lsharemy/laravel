@@ -308,7 +308,7 @@ Route::get('oldInput', function()
 
 Route::get('oldInput2', function()
 {
-	return Input::old('firstname');
+	return Session::all();
 });
 
 // Files
@@ -369,3 +369,10 @@ Route::get('JSONResponses', function()
 
 // Response Macros
 // skip
+
+
+
+Route::get('sessionAll', function()
+{
+	return Session::all();
+});
