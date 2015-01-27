@@ -370,6 +370,23 @@ Route::get('JSONResponses', function()
 // Response Macros
 // skip
 
+/*
+|--------------------------------------------------------------------------
+| Controllers
+|--------------------------------------------------------------------------
+*/
+
+// Basic Controllers
+Route::get('basicControllers/{id}', 'UserController@showProfile');
+
+// Controller Filters
+// skip
+// Implicit Controllers
+// skip
+// RESTful Resource Controllers
+// skip
+// Handling Missing Methods
+// skip
 
 
 Route::get('sessionAll', function()
